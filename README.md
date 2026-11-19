@@ -5,7 +5,7 @@ Chat bot for the game shop inspired by Steam.
 Maja Woźniak
 
 ## Running
-uv sync
+uv sync \
 uv run steam-shop
 
 # Notes for me
