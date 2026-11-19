@@ -1,4 +1,5 @@
 """Database model of store user (player / admin)."""
+
 from typing import TYPE_CHECKING
 
 from sqlalchemy import String
@@ -21,5 +22,7 @@ class User(Base):
     balance: Mapped[int] = mapped_column(default=0)
     is_admin: Mapped[bool] = mapped_column(default=False)
 
-# tutaj lista bo jeden uzytkownik ma wiele zakupów, cascade all i delete orphan usuwają zakupy wraz z usunięciem uzytkownika
-    purchases: Mapped[list["Purchase"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    # tutaj lista bo jeden uzytkownik ma wiele zakupów, cascade all i delete orphan usuwają zakupy wraz z usunięciem uzytkownika
+    purchases: Mapped[list["Purchase"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )

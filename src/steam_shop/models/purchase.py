@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from steam_shop.models.game import Game
     from steam_shop.models.user import User
 
+
 class Purchase(Base):
     """A single game bought by a single user."""
 
@@ -25,7 +26,7 @@ class Purchase(Base):
     price_paid: Mapped[int] = mapped_column()
     purchased_at: Mapped[datetime] = mapped_column(default=datetime.now)
 
-# PL: relationship to nie kolejna kolumna a skrót by łączyć informacje z tabel by się same uzupełniały
-# PL: back_populates łączy obie strony tabel ze sobą 
+    # PL: relationship to nie kolejna kolumna a skrót by łączyć informacje z tabel by się same uzupełniały
+    # PL: back_populates łączy obie strony tabel ze sobą
     user: Mapped["User"] = relationship(back_populates="purchases")
     game: Mapped["Game"] = relationship(back_populates="purchases")

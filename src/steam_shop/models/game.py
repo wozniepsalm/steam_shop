@@ -1,4 +1,5 @@
 """Database model of games available in the store."""
+
 from typing import TYPE_CHECKING
 
 from sqlalchemy import String
@@ -21,4 +22,6 @@ class Game(Base):
     genre: Mapped[str] = mapped_column(String(50))
     price: Mapped[int] = mapped_column()
 
-    purchases: Mapped[list["Purchase"]] = relationship(back_populates="game", cascade="all, delete-orphan")
+    purchases: Mapped[list["Purchase"]] = relationship(
+        back_populates="game", cascade="all, delete-orphan"
+    )
