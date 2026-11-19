@@ -15,4 +15,4 @@ class Game(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(100), unique=True)
     genre: Mapped[str] = mapped_column(String(50))
-    price: Mapped[int] = mapped_column(default=0)
+    price: Mapped[int] = mapped_column()
