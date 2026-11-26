@@ -4,14 +4,17 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from steam_shop.core.exceptions import ShopError
-from steam_shop.core.games import list_games
-from steam_shop.models import User, Game, Purchase
+from steam_shop.core.games import list_games 
+from steam_shop.models import User, Purchase
 
 
 def buy_game(session: Session, user: User, title: str) -> Purchase: # dostaje sesje zalogowanego uzytkownika i wybiera mi te rzeczy wpisane
     """Buying the game with the given title for the given user."""
-    game = session.scalar(select(Game).where(Game.title == title.strip()))
-    if game is None:
+    for shop_game in list_games(session):
+        if shop_game.title.lower() == title.strip().lower():
+            game = shop_game
+            break
+    else:
         raise ShopError(f"Game '{title}' does not exist.")
 
     already_bought = session.scalar(
