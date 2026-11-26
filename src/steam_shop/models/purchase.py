@@ -17,16 +17,14 @@ class Purchase(Base):
     """A single game bought by a single user."""
 
     __tablename__ = "purchases"
-    # PL: unique constraint pozwala wymusić unikalność kombinacji kolumn user_id i game_id (ta sama para tylko raz ale kombinacje wiele razy)
-    __table_args__ = (UniqueConstraint("user_id", "game_id"),)
+    
+    __table_args__ = (UniqueConstraint("user_id", "game_id"),) # unique constraint wymusza unikalność kombinacji kolumn user_id i game_id (ta sama para tylko raz ale kombinacje wiele razy)
 
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     game_id: Mapped[int] = mapped_column(ForeignKey("games.id"))
     price_paid: Mapped[int] = mapped_column()
     purchased_at: Mapped[datetime] = mapped_column(default=datetime.now)
-
-    # PL: relationship to nie kolejna kolumna a skrót by łączyć informacje z tabel by się same uzupełniały
-    # PL: back_populates łączy obie strony tabel ze sobą
-    user: Mapped["User"] = relationship(back_populates="purchases")
-    game: Mapped["Game"] = relationship(back_populates="purchases")
+    
+    user: Mapped["User"] = relationship(back_populates="purchases") # relationship to nie kolejna kolumna a skrót by łączyć informacje z tabel by się same uzupełniały
+    game: Mapped["Game"] = relationship(back_populates="purchases") # back_populates łączy obie strony tabel ze sobą

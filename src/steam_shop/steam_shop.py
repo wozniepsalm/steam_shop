@@ -9,7 +9,7 @@ def main() -> None:
     print("Welcome to the Steam Shop application!")
 
 
-# PL: Program zaczyna od przygotowania bazy, a dopiero potem wita użytkownika.
+# Program zaczyna od przygotowania bazy, a dopiero potem wita użytkownika.
 
 
 if __name__ == "__main__":

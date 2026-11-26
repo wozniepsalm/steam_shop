@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-# PL: opisy kolumn w stylu sqlalchemy 2.0 i typy danych w pythonie
+# opisy kolumn w stylu sqlalchemy 2.0 i typy danych w pythonie
 from steam_shop.models.base import Base
 
 if TYPE_CHECKING:
